@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  +=   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | TAB  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_QWERTY] = LAYOUT( \
   //,------------------------------------------------.                    ,---------------------------------------------------.
-  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,             LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_GRV, \
+  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,             LT(_SWITCH,KC_6), KC_7,   KC_8,    KC_9,    KC_0,    KC_EQUAL, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
   LT(_NUMPAD,KC_TAB),KC_Q,KC_W,KC_E,  KC_R,    KC_T,                      KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
@@ -175,7 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | trans|   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * | trans|  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  | Shift|
+ * | trans|      |      |      |   {  |   }  |-------|    |-------|   [  |   ]  |      |      |   \  | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | Bspc | WIN  |LOWER | Enter| /Space  /       \Enter \  |SPACE |RAISE | RCTR | RAlt |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -187,9 +187,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
   KC_GRV,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_BSPC, \
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------| 
-  _______,  KC_NO,  KC_NO,   KC_NO,   KC_WH_U, KC_PGUP,                   KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_NO,   KC_DEL,  \
+  _______,  KC_NO,  KC_NO,   KC_NO,   KC_DLR, KC_PERC,                   KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_NO,   KC_DEL,  \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
-  _______,  KC_NO,  KC_NO,   KC_NO,   KC_WH_D, KC_PGDN,_______,    _______,KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,    _______, \
+  _______,  KC_NO,  KC_NO,   KC_NO,   KC_LCBR, KC_RCBR,_______,    _______,KC_LBRC,KC_RBRC,  KC_NO,   KC_NO,   KC_BSLASH,_______, \
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------| 
                  _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______\
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/  
@@ -198,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine| Bspc |
+ * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | (   |   )  | Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del | Bspc |
  * |------+------+------+------+------+------|  MUTE  |    |       |------+------+------+------+------+------|
@@ -363,7 +363,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_command_lights,       
 	layer_numpad_lights, 
 	layer_switcher_lights,  // Overrides other layers
-	layer_colemakdh_lights
+    layer_colemakdh_lights
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -413,7 +413,7 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("Qwrt"), false);
             break;
-        case _COLEMAK:
+            case _COLEMAK:
             oled_write_ln_P(PSTR("Clmk"), false);
             break;
         case _COLEMAKDH:
@@ -476,7 +476,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        case KC_COLEMAK:
+            case KC_COLEMAK:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_COLEMAK);
             }
@@ -534,9 +534,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
 		} else if (index == 1) {
 			switch (get_highest_layer(layer_state)) {
-				case _COLEMAK:
+                case _COLEMAK:
 				case _QWERTY:
-				case _COLEMAKDH:
+                case _COLEMAKDH:
 					if (clockwise) {
 						tap_code(KC_PGDOWN);
 					} else {
